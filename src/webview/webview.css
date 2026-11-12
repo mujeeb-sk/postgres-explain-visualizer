@@ -1,0 +1,26 @@
+/*
+ * VS Code gives every webview a default stylesheet. These undo the parts of it that Bootstrap
+ * doesn't already override, so the visualizer looks the same as it does in a browser.
+ */
+body {
+  padding: 0;
+}
+
+code {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+/*
+ * Beside an editor the panel is half as wide as a browser window, and the outline on the left
+ * is a fifth of that. Let its row of buttons wrap, so that none of them is cut off.
+ */
+.plan-diagram .btn-group {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.plan-diagram .btn-group > .btn {
+  flex-grow: 0;
+}

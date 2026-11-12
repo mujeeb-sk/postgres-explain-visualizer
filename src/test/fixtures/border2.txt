@@ -1,0 +1,20 @@
++------------------------------------------------------------------------------------------------------------------+
+|                                                    QUERY PLAN                                                    |
++------------------------------------------------------------------------------------------------------------------+
+| Limit  (cost=2328.55..2328.58 rows=10 width=53)                                                                  |
+|   ->  Sort  (cost=2328.55..2333.55 rows=2000 width=53)                                                           |
+|         Sort Key: (sum(o.total)) DESC                                                                            |
+|         ->  HashAggregate  (cost=2260.33..2285.33 rows=2000 width=53)                                            |
+|               Group Key: c.name                                                                                  |
+|               ->  Hash Join  (cost=653.61..2201.62 rows=7828 width=19)                                           |
+|                     Hash Cond: (o.customer_id = c.id)                                                            |
+|                     ->  Bitmap Heap Scan on orders o  (cost=439.61..1884.84 rows=39138 width=10)                 |
+|                           Recheck Cond: (created_at >= '2026-06-01'::date)                                       |
+|                           ->  Bitmap Index Scan on orders_created_at_idx  (cost=0.00..429.83 rows=39138 width=0) |
+|                                 Index Cond: (created_at >= '2026-06-01'::date)                                   |
+|                     ->  Hash  (cost=189.00..189.00 rows=2000 width=17)                                           |
+|                           ->  Seq Scan on customers c  (cost=0.00..189.00 rows=2000 width=17)                    |
+|                                 Filter: (country = 'IN'::text)                                                   |
++------------------------------------------------------------------------------------------------------------------+
+(14 rows)
+

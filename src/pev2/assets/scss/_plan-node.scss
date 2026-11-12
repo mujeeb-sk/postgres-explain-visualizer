@@ -1,0 +1,178 @@
+@use "variables";
+@use "sass:math";
+
+$compact-width: 50px;
+.plan-node {
+  cursor: default;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  font-size: variables.$font-size-sm;
+  margin-bottom: 4px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: 240px;
+
+  .plan-node-body {
+    position: relative;
+    border-radius: variables.$border-radius-base;
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.1);
+
+    &.card {
+      .card-body,
+      .card-header {
+        padding: variables.$padding-base variables.$padding-lg;
+      }
+
+      .card-header .card-header-tabs {
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: -(variables.$padding-base);
+        margin-top: variables.$padding-base;
+
+        .nav-link {
+          padding: math.div(variables.$padding-base, 2) variables.$padding-lg;
+        }
+      }
+    }
+  }
+
+  &.parallel .plan-node-body {
+    box-shadow: none;
+  }
+
+  header {
+    margin-bottom: variables.$padding-base;
+    overflow: hidden;
+
+    h4 {
+      font-size: variables.$font-size-base;
+      font-weight: 600;
+      margin: 0;
+      line-height: inherit;
+    }
+
+    .node-duration {
+      float: right;
+      margin-left: variables.$padding-lg;
+      font-size: variables.$font-size-base;
+    }
+  }
+
+  .prop-list {
+    color: inherit;
+    // required for overflow-wrap to be taken into account
+    table-layout: fixed;
+  }
+
+  .node-detail-toggle {
+    cursor: pointer;
+    &:hover {
+      background-color: var(--bs-secondary-bg);
+    }
+  }
+
+  //hovers
+  &:hover,
+  &.highlight {
+    $hover-color: rgba(0, 0, 0, 0.4);
+    .plan-node-body {
+      box-shadow: 1px 1px 5px 0px $hover-color;
+    }
+    .workers > div {
+      border-color: rgba($hover-color, 0.2);
+    }
+  }
+
+  &.selected {
+    .plan-node-body {
+      border-color: variables.$highlight-color;
+      box-shadow: 0px 0px 5px 2px rgba(variables.$highlight-color, 0.4);
+    }
+
+    .workers > div {
+      border-color: rgba(variables.$highlight-color, 0.2);
+    }
+  }
+
+  .node-description {
+    text-align: left;
+    font-style: italic;
+    word-break: normal;
+
+    .node-type {
+      font-weight: 600;
+      background-color: variables.$blue;
+      color: #fff;
+      padding: 0 variables.$padding-base;
+    }
+  }
+
+  .btn-default {
+    border: 0;
+  }
+
+  .plan-query-container {
+    border: 1px solid var(--bs-border-color);
+    padding: variables.$padding-xl;
+    background-color: var(--bs-body-bg);
+    position: absolute;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    border-radius: variables.$border-radius-base;
+    margin-bottom: variables.$padding-xl;
+    z-index: 1;
+    left: 0;
+
+    h3 {
+      font-size: variables.$font-size-lg;
+      width: 93%;
+      text-align: left;
+      border-bottom: 1px solid var(--bs-border-color);
+      padding-bottom: variables.$padding-base;
+      margin-bottom: variables.$padding-lg;
+    }
+  }
+
+  .workers {
+    > div {
+      border-radius: variables.$border-radius-base;
+    }
+  }
+
+  .subplan-name {
+    background-color: var(--bs-info-bg-subtle);
+    border-radius: variables.$border-radius-base;
+  }
+
+  button {
+    .fa-chevron-right {
+      display: inline-block;
+    }
+    .fa-chevron-down {
+      display: none;
+    }
+  }
+  button[aria-expanded="true"] {
+    .fa-chevron-right {
+      display: none !important;
+    }
+    .fa-chevron-down {
+      display: inline-block !important;
+    }
+  }
+
+  &.plan-node-detail .text-truncate {
+    overflow: initial;
+    white-space: initial;
+    text-overflow: initial;
+  }
+}
+
+.node-bar-label {
+  text-align: left;
+  display: block;
+}
+
+.detailed {
+  width: 400px !important;
+}

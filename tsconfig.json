@@ -1,0 +1,12 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["src/**/*", "src/**/*.vue", "vite.config.ts"],
+  "exclude": ["src/test/integration"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/pev2/*"]
+    },
+    "types": ["node", "d3"]
+  }
+}

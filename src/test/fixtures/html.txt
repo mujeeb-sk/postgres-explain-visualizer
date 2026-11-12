@@ -1,0 +1,6 @@
+                                                               QUERY PLAN                                                                
+-----------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on customers  (cost=0.00..214.00 rows=1 width=20)
+   Filter: ((name = '<img src=x onerror="window.__pwned=1"><script>window.__pwned=1</script>'::text) OR (country = '<b>bold</b>'::text))
+(2 rows)
+
